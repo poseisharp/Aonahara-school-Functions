@@ -1,0 +1,39 @@
+type Student {
+  discord_id: String!
+  name: String!     
+  attendance: Attendance
+}
+
+type Attendance {
+  date: String!
+  student: Student
+  class: Class
+}
+
+type Class {
+  name: String!
+  teacher: String!
+  time: String!
+  attendance: Attendance
+}
+
+type Query {
+  allAttendance: [Attendance!]!
+}
+
+get Class by name
+if not exist:
+    create a new class
+
+create attendance with the ref of class by name
+
+update class with the attendance refferencec
+
+get student by discord_id
+if not exist:
+    create a new student
+
+create student with attendance ref id
+
+update attendance with student ref
+
