@@ -13,11 +13,14 @@ exports.handler = async (event, context) => {
   const attendanceId = getId(event.path);
   return client
     .query(
-      q.Get(
-        q.Match(
-          q.Index("relation_by_attendances"),
-          q.Ref(q.Collection("Attendance"), `${attendanceId}`)
-        )
+      q.Map(
+        q.Paginate(
+          q.Match(
+            q.Index("relation_by_attendances"),
+            q.ref(q.Collection("Attendance"), `${attendanceId}`)
+          )
+        ),
+        q.Lambda("studentRef", q.Get(q.Var("studentRef")))
       )
     )
     .then((response) => {
