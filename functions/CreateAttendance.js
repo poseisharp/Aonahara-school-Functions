@@ -8,7 +8,9 @@ exports.handler = async (event, context) => {
 
   console.log(event.body);
 
-  const { date, kelas } = JSON.parse(event.body);
+  const { date, kelas, unformatedDate, weekNumber, year } = JSON.parse(
+    event.body
+  );
 
   return client
     .query(
@@ -16,6 +18,9 @@ exports.handler = async (event, context) => {
         data: {
           date: date,
           class: q.Ref(q.Collection("Classes"), kelas),
+          unformatedDate: unformatedDate,
+          weekNumber: weekNumber,
+          year: year,
         },
       })
     )
