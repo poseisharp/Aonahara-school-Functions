@@ -17,7 +17,7 @@ exports.handler = async (event, context) => {
         q.Paginate(
           q.Match(
             q.Index("relation_by_attendances"),
-            q.ref(q.Collection("Attendance"), `${attendanceId}`)
+            q.Ref(q.Collection("Attendance"), `${attendanceId}`)
           )
         ),
         q.Lambda("studentRef", q.Get(q.Var("studentRef")))
