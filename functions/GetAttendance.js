@@ -21,7 +21,7 @@ exports.handler = async (event, context) => {
         q.Match(
           q.Index("attendance_by_date_and_class"),
           attendance,
-          q.Ref(Collection("Classes"), `"${classId}"`)
+          q.Ref(q.Collection("Classes"), `"${classId}"`)
         )
       )
     )
