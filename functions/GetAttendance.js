@@ -17,9 +17,12 @@ exports.handler = async (event, context) => {
   const attendance = getAttendance(event.path);
   return client
     .query(
-        q.Get(
-            
-            q.Match(q.Index("attendance_by_date_and_class"), attendance, q.Ref(Collection("Classes"), `"${classId}"`)
+      q.Get(
+        q.Match(
+          q.Index("attendance_by_date_and_class"),
+          attendance,
+          q.Ref(Collection("Classes"), `"${classId}"`)
+        )
       )
     )
     .then((response) => {
